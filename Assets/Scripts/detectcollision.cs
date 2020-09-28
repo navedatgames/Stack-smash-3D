@@ -16,6 +16,8 @@ public class detectcollision : MonoBehaviour
     [SerializeField] AudioSource gameover;
     public GameObject panel;
 
+   
+
     private void OnCollisionEnter(Collision info)
     {
         collided = true;
@@ -23,6 +25,8 @@ public class detectcollision : MonoBehaviour
            {
                rb.velocity = Vector3.down * downforce;
               Destroy(info.gameObject);
+              Level.instance.objectInScene--;
+              UIManager.instance.UpdateLevelProgress();
               breakstack.Play();
            } 
            else if(info.gameObject.tag=="base" && b == false)
